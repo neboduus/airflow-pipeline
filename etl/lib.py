@@ -23,3 +23,7 @@ def parse_birthdate(birthdate: str, date_format: str = "%Y-%m-%d") -> Union[date
 def convert_birthdate(employee_df: pd.DataFrame) -> pd.DataFrame:
     employee_df['ParsedBirthDate'] = employee_df['BirthDate'].apply(parse_birthdate)
     return employee_df
+
+
+def remove_special_chars(text: str) -> Union[str, NaTType]:
+    pass
