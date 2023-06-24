@@ -2,9 +2,16 @@
 unit-test:
 	env/bin/python3 -m pytest -vv --log-cli-level=DEBUG
 
-.PHONY: build-containers
-build-containers:
+.PHONY: build-data-ingestor-containers
+build-data-ingestor-containers:
 	cd data_ingestor && docker build -t data_ingestor:0.0.1 .
+
+.PHONY: build-unittest-container
+build-unittest-container:
+	docker build -f unittest.Dockerfile -t unit_test:0.0.1 .
+
+.PHONY: build-containers
+build-containers: build-unittest-container build-data-ingestor-containers
 
 .PHONY: create_env
 create_env:
