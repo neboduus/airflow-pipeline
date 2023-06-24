@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 current_path = Path(os.path.dirname(os.path.realpath(__file__)))
 
 
-def get_test_resource(filename: str) -> dict:
+def get_test_resource_as_dict(filename: str) -> dict:
     with open(current_path / 'test_resources' / filename) as file:
         return json.load(file)
 
@@ -43,7 +43,7 @@ def test_parse_birthdate():
 def test_birthdate_conversion():
     employee_df = convert_birthdate(read_data(get_employee_data()))
     expected_test_resource = "expected_birthdate_column_after_conversion.json"
-    expected_birthdate_col_json = get_test_resource(expected_test_resource)
+    expected_birthdate_col_json = get_test_resource_as_dict(expected_test_resource)
     parsed_birthdate_col_json = json.loads(employee_df["ParsedBirthDate"].to_json())
     assert expected_birthdate_col_json == parsed_birthdate_col_json
 
