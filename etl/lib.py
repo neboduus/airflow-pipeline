@@ -10,7 +10,8 @@ logger = logging.getLogger(__name__)
 
 
 def read_data(data: str, sep: str = ',') -> pd.DataFrame:
-    return pd.read_csv(StringIO(data), sep=sep)
+    df = pd.read_csv(StringIO(data), sep=sep)
+    return df.rename(columns=lambda x: x.strip())
 
 
 def parse_birthdate(birthdate: str, date_format: str = "%Y-%m-%d") -> Union[datetime, NaTType]:
