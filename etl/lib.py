@@ -91,4 +91,4 @@ def calculate_salary_bucket(employee_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def drop_useless_columns(employee_df: pd.DataFrame) -> pd.DataFrame:
-    pass
+    return employee_df.drop(columns=['FirstName', 'LastName', 'BirthDate'])

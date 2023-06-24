@@ -104,5 +104,5 @@ def test_drop_useless_columns():
     employee_df = read_data(get_employee_data())
     employee_df = drop_useless_columns(employee_df)
     expected_columns = ['EmployeeID', 'Department', 'Salary']
-    actual_columns = employee_df.columns
+    actual_columns = employee_df.columns.to_list()
     assert expected_columns == actual_columns
