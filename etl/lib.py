@@ -21,4 +21,5 @@ def parse_birthday(birthday: str, date_format: str = "%Y-%m-%d") -> Union[dateti
 
 
 def convert_birthdate(employee_df: pd.DataFrame) -> pd.DataFrame:
-    pass
+    employee_df['ParsedBirthDate'] = employee_df['BirthDate'].apply(parse_birthday)
+    return employee_df
