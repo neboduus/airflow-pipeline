@@ -67,4 +67,6 @@ def merge_names(employee_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def calculate_age(employee_df: pd.DataFrame) -> pd.DataFrame:
-    pass
+    today = datetime(2023, 1, 1, 0, 0)
+    employee_df['Age'] = employee_df['ParsedBirthDate'] - today
+    return employee_df
