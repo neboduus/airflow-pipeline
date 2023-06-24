@@ -13,3 +13,7 @@ create_env:
 .PHONY: init
 init: create_env
 	env/bin/pip install -r requirements.txt
+
+.PHONY: deploy
+deploy:
+	docker compose up
