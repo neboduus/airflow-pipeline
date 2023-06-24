@@ -7,7 +7,7 @@ from pathlib import Path
 import pandas as pd
 
 from etl.lib import read_data, convert_birthdate, parse_birthdate, clean_text, clean_names, merge_names, calculate_age, \
-    calculate_salary_bucket, drop_useless_columns
+    calculate_salary_bucket, drop_useless_columns, etl_pipeline
 
 logger = logging.getLogger(__name__)
 current_path = Path(os.path.dirname(os.path.realpath(__file__)))
@@ -106,3 +106,14 @@ def test_drop_useless_columns():
     expected_columns = ['EmployeeID', 'Department', 'Salary']
     actual_columns = employee_df.columns.to_list()
     assert expected_columns == actual_columns
+
+
+def test_elt_pipeline():
+    input_data = get_employee_data()
+    employee_df = etl_pipeline(input_data)
+    expected_test_resource = "expected_etl_pipeline_result.json"
+    expected_etl_pipeline_result = get_test_resource_as_dict(expected_test_resource)
+    actual_result = json.loads(employee_df.to_json(force_ascii=False))
+    assert actual_result == expected_etl_pipeline_result
+
+
