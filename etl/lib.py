@@ -25,7 +25,7 @@ def convert_birthdate(employee_df: pd.DataFrame) -> pd.DataFrame:
     return employee_df
 
 
-def remove_special_chars(text: str) -> Union[str, NaTType]:
+def clean_text(text: str) -> Union[str, NaTType]:
     replacements_dict = {
         '!': '',
         '@': '',

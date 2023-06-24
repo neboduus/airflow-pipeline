@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from etl.lib import read_data, convert_birthdate, parse_birthdate, remove_special_chars
+from etl.lib import read_data, convert_birthdate, parse_birthdate, clean_text
 
 logger = logging.getLogger(__name__)
 current_path = Path(os.path.dirname(os.path.realpath(__file__)))
@@ -46,7 +46,7 @@ def test_birthdate_conversion():
     assert expected_birthdate_col_json == parsed_birthdate_col_json
 
 
-def test_remove_special_chars():
+def test_clean_text():
     texts_test_cases = [
         ("D&Bry", "DBry"),
         ("Elena'00", "Elena00"),
@@ -54,5 +54,5 @@ def test_remove_special_chars():
         ('Gabriel$   Lakey "', "Gabriel   Lakey ")
     ]
     for input_text, expected_output in texts_test_cases:
-        output = remove_special_chars(input_text)
+        output = clean_text(input_text)
         assert output == expected_output
