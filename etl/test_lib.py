@@ -7,7 +7,7 @@ from pathlib import Path
 import pandas as pd
 
 from etl.lib import read_data, convert_birthdate, parse_birthdate, clean_text, clean_names, merge_names, calculate_age, \
-    calculate_salary_bucket
+    calculate_salary_bucket, drop_useless_columns
 
 logger = logging.getLogger(__name__)
 current_path = Path(os.path.dirname(os.path.realpath(__file__)))
@@ -98,3 +98,11 @@ def test_calculate_salary_bucket():
     parsed_salary_bucket_col_json = json.loads(employee_df[["SalaryBucket"]]
                                                .to_json(force_ascii=False))
     assert expected_salary_bucket_col_json == parsed_salary_bucket_col_json
+
+
+def test_drop_useless_columns():
+    employee_df = read_data(get_employee_data())
+    employee_df = drop_useless_columns(employee_df)
+    expected_columns = ['EmployeeID', 'Department', 'Salary']
+    actual_columns = employee_df.columns
+    assert expected_columns == actual_columns

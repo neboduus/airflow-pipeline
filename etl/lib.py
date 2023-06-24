@@ -88,3 +88,7 @@ def categorize_salary(salary: str) -> str:
 def calculate_salary_bucket(employee_df: pd.DataFrame) -> pd.DataFrame:
     employee_df['SalaryBucket'] = employee_df['Salary'].map(categorize_salary)
     return employee_df
+
+
+def drop_useless_columns(employee_df: pd.DataFrame) -> pd.DataFrame:
+    pass
