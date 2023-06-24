@@ -1,5 +1,9 @@
-.PHONY: unit-test
-unit-test:
+.PHONY: unit-test-local
+unit-test-local:
+	env/bin/python3 -m pytest -vv --log-cli-level=DEBUG
+
+.PHONY: unit-test-docker
+unit-test-docker:
 	docker run unit_test:0.0.1
 
 .PHONY: build-data-ingestor-containers
