@@ -30,7 +30,7 @@ init: create_env install-etl-pipeline-requirements install-data-ingestor-require
 
 .PHONY: deploy
 deploy:
-	docker compose up
+	docker-compose up
 
 .PHONY: integration-test
 integration-test:
