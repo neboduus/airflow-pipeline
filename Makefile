@@ -17,3 +17,7 @@ init: create_env
 .PHONY: deploy
 deploy:
 	docker compose up
+
+.PHONY: integration-test
+integration-test:
+	docker exec -it data-engineering-pipeline-airflow-worker-1 airflow dags test etl_pipeline
