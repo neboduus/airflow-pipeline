@@ -26,4 +26,27 @@ def convert_birthdate(employee_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def remove_special_chars(text: str) -> Union[str, NaTType]:
-    pass
+    replacements_dict = {
+        '!': '',
+        '@': '',
+        '&': '',
+        '$': '',
+        '"': '',
+        '(': '',
+        ')': '',
+        '.': '',
+        '\n': '',
+        ';': '',
+        '#': '',
+        '*': '',
+        '_': '',
+        "'": '',
+        # ' ': ''
+    }
+    try:
+        for key, value in replacements_dict.items():
+            if key in text:
+                text = text.replace(key, value)
+        return text
+    except (Exception,):
+        return pd.NaT

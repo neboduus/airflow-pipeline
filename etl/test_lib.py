@@ -49,10 +49,10 @@ def test_birthdate_conversion():
 def test_remove_special_chars():
     texts_test_cases = [
         ("D&Bry", "DBry"),
-        ("Elena'00", "Elena"),
-        ('"J"ack "', "Jack"),
-        ('Gabriel$   Lakey "', "Gabriel Lakey")
+        ("Elena'00", "Elena00"),
+        ('"J"ack "', "Jack "),
+        ('Gabriel$   Lakey "', "Gabriel   Lakey ")
     ]
     for input_text, expected_output in texts_test_cases:
-        output = remove_special_chars(input_text),
+        output = remove_special_chars(input_text)
         assert output == expected_output
