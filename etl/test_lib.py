@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from etl.lib import read_data, convert_birthdate, parse_birthdate, clean_text
+from etl.lib import read_data, convert_birthdate, parse_birthdate, clean_text, clean_names
 
 logger = logging.getLogger(__name__)
 current_path = Path(os.path.dirname(os.path.realpath(__file__)))
@@ -56,3 +56,11 @@ def test_clean_text():
     for input_text, expected_output in texts_test_cases:
         output = clean_text(input_text)
         assert output == expected_output
+
+
+def test_names_cleaning():
+    employee_df = clean_names(read_data(get_employee_data()))
+    expected_test_resource = "expected_birthdate_column_after_conversion.json"
+    expected_birthdate_col_json = get_test_resource(expected_test_resource)
+    parsed_birthdate_col_json = json.loads(employee_df["ParsedBirthDate"].to_json())
+    assert expected_birthdate_col_json == parsed_birthdate_col_json

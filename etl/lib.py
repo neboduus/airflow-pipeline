@@ -50,3 +50,7 @@ def clean_text(text: str) -> Union[str, NaTType]:
         return text.strip()
     except (Exception,):
         return pd.NaT
+
+
+def clean_names(employee_df: pd.DataFrame) -> pd.DataFrame:
+    pass
