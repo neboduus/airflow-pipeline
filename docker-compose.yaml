@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  data-ingestor:
+    container_name: data_ingestor
+    image: data_ingestor:0.0.1
+    ports:
+      - "5000:5000"
