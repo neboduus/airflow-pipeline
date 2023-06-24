@@ -42,6 +42,8 @@ def clean_text(text: str) -> Union[str, NaTType]:
         '*': '',
         '_': '',
         "'": '',
+        "^": '',
+        "=": '',
         # ' ': ''
     }
     try:
