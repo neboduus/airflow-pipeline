@@ -95,4 +95,11 @@ def drop_useless_columns(employee_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def etl_pipeline(data: str) -> pd.DataFrame:
-    pass
+    employee_df = read_data(data)
+    employee_df = convert_birthdate(employee_df)
+    employee_df = clean_names(employee_df)
+    employee_df = merge_names(employee_df)
+    employee_df = calculate_age(employee_df)
+    employee_df = calculate_salary_bucket(employee_df)
+    employee_df = drop_useless_columns(employee_df)
+    return employee_df
