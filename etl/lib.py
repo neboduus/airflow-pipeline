@@ -47,6 +47,6 @@ def clean_text(text: str) -> Union[str, NaTType]:
         for key, value in replacements_dict.items():
             if key in text:
                 text = text.replace(key, value)
-        return text
+        return text.strip()
     except (Exception,):
         return pd.NaT
