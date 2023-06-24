@@ -54,4 +54,6 @@ def clean_text(text: str) -> Union[str, NaTType]:
 
 
 def clean_names(employee_df: pd.DataFrame) -> pd.DataFrame:
-    pass
+    employee_df['FirstName'] = employee_df['FirstName'].apply(clean_text)
+    employee_df['LastName'] = employee_df['LastName'].apply(clean_text)
+    return employee_df
