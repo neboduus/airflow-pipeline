@@ -70,3 +70,7 @@ def calculate_age(employee_df: pd.DataFrame) -> pd.DataFrame:
     today = datetime(2023, 1, 1, 0, 0)
     employee_df['Age'] = employee_df['ParsedBirthDate'] - today
     return employee_df
+
+
+def calculate_salary_bucket(employee_df: pd.DataFrame) -> pd.DataFrame:
+    pass

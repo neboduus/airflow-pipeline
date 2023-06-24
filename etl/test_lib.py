@@ -6,7 +6,8 @@ from pathlib import Path
 
 import pandas as pd
 
-from etl.lib import read_data, convert_birthdate, parse_birthdate, clean_text, clean_names, merge_names, calculate_age
+from etl.lib import read_data, convert_birthdate, parse_birthdate, clean_text, clean_names, merge_names, calculate_age, \
+    calculate_salary_bucket
 
 logger = logging.getLogger(__name__)
 current_path = Path(os.path.dirname(os.path.realpath(__file__)))
@@ -87,3 +88,13 @@ def test_calculate_age():
     expected_age_col_json = get_test_resource_as_dict(expected_test_resource)
     parsed_age_col_json = json.loads(employee_df[["Age"]].to_json(force_ascii=False))
     assert expected_age_col_json == parsed_age_col_json
+
+
+def test_calculate_salary_bucket():
+    employee_df = read_data(get_employee_data())
+    employee_df = calculate_salary_bucket(employee_df)
+    expected_test_resource = "expected_salary_bucket_column_after_calculate_age.json"
+    expected_salary_bucket_col_json = get_test_resource_as_dict(expected_test_resource)
+    parsed_salary_bucket_col_json = json.loads(employee_df[["SalaryBucket"]]
+                                               .to_json(force_ascii=False))
+    assert expected_salary_bucket_col_json == parsed_salary_bucket_col_json
