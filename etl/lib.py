@@ -64,3 +64,7 @@ def clean_names(employee_df: pd.DataFrame) -> pd.DataFrame:
 def merge_names(employee_df: pd.DataFrame) -> pd.DataFrame:
     employee_df['MergedNames'] = employee_df['FirstName'] + ' ' + employee_df['LastName']
     return employee_df
+
+
+def calculate_age(employee_df: pd.DataFrame) -> pd.DataFrame:
+    pass
