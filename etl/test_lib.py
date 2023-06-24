@@ -21,6 +21,8 @@ def test_read_data():
     employee_data = get_employee_data()
     employee_df = read_data(employee_data)
     assert not employee_df.empty
+    column_names = ['EmployeeID', 'FirstName', 'LastName', 'BirthDate', 'Department', 'Salary']
+    assert employee_df.columns.to_list() == column_names
 
 
 def get_employee_data():
