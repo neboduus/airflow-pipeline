@@ -72,5 +72,19 @@ def calculate_age(employee_df: pd.DataFrame) -> pd.DataFrame:
     return employee_df
 
 
+def categorize_salary(salary: str) -> str:
+    try:
+        int_salary = int(salary)
+        if int_salary < 50000:
+            return "A"
+        elif 50000 < int_salary < 100000:
+            return "B"
+        else:
+            return "C"
+    except (Exception, ):
+        return "UNKNOWN"
+
+
 def calculate_salary_bucket(employee_df: pd.DataFrame) -> pd.DataFrame:
-    pass
+    employee_df['SalaryBucket'] = employee_df['Salary'].map(categorize_salary)
+    return employee_df
