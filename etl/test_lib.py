@@ -27,9 +27,7 @@ def get_employee_data():
 
 
 def test_birthdate_conversion():
-    employee_data = get_employee_data()
-    employee_df = read_data(employee_data)
-    employee_df = convert_birthdate(employee_df)
+    employee_df = convert_birthdate(read_data(get_employee_data()))
     expected_test_resource = "expected_birthdate_column_after_conversion.json"
     expected_birthdate_col_json = get_test_resource(expected_test_resource)
     parsed_birthdate_col_json = json.loads(employee_df["ParsedBirthDate"].to_json())
