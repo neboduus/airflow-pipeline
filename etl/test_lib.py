@@ -61,8 +61,10 @@ def test_clean_text():
 
 
 def test_names_cleaning():
-    employee_df = clean_names(read_data(get_employee_data()))
-    expected_test_resource = "expected_birthdate_column_after_conversion.json"
-    expected_birthdate_col_json = get_test_resource(expected_test_resource)
-    parsed_birthdate_col_json = json.loads(employee_df["ParsedBirthDate"].to_json())
-    assert expected_birthdate_col_json == parsed_birthdate_col_json
+    employee_df = read_data(get_employee_data())
+    employee_df = clean_names(employee_df)
+    expected_test_resource = "expected_firstname_lastname_columns_after_cleaning.json"
+    expected_names_cols_json = get_test_resource_as_dict(expected_test_resource)
+    parsed_names_cols_json = json.loads(
+        employee_df[["FirstName", "LastName"]].to_json(force_ascii=False))
+    assert expected_names_cols_json == parsed_names_cols_json
