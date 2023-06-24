@@ -8,11 +8,18 @@ build-containers:
 
 .PHONY: create_env
 create_env:
-	python -m venv env
+	python3.8 -m venv env
+
+.PHONY: install-data-ingestor-requirements
+install-data-ingestor-requirements:
+	env/bin/pip install -r data_ingestor/requirements.txt
+
+.PHONY: install-etl-pipeline-requirements
+install-etl-pipeline-requirements:
+	env/bin/pip install -r etl/requirements.txt
 
 .PHONY: init
-init: create_env
-	env/bin/pip install -r requirements.txt
+init: create_env install-etl-pipeline-requirements install-data-ingestor-requirements
 
 .PHONY: deploy
 deploy:
