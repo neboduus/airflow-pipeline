@@ -1,9 +1,12 @@
 import json
 import logging
 import os
+import datetime
 from pathlib import Path
 
-from etl.lib import read_data, convert_birthdate
+import pandas as pd
+
+from etl.lib import read_data, convert_birthdate, parse_birthdate
 
 logger = logging.getLogger(__name__)
 current_path = Path(os.path.dirname(os.path.realpath(__file__)))
@@ -24,6 +27,15 @@ def get_employee_data():
     with open(f"{current_path}/data/employee_data.csv") as csv_file:
         employee_data = ''.join(csv_file.readlines())
     return employee_data
+
+
+def test_parse_birthdate():
+    good_birthdate = "1990-08-07"
+    bad_birthdate = "xxx-08-07"
+    parsed_good_birthdate = parse_birthdate(good_birthdate)
+    parsed_bad_birthdate = parse_birthdate(bad_birthdate)
+    assert parsed_good_birthdate == datetime.datetime(1990, 8, 7, 0, 0)
+    assert pd.isnull(parsed_bad_birthdate)
 
 
 def test_birthdate_conversion():
