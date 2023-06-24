@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from etl.lib import read_data, convert_birthdate, parse_birthdate, clean_text, clean_names
+from etl.lib import read_data, convert_birthdate, parse_birthdate, clean_text, clean_names, merge_names
 
 logger = logging.getLogger(__name__)
 current_path = Path(os.path.dirname(os.path.realpath(__file__)))
@@ -68,3 +68,13 @@ def test_names_cleaning():
     parsed_names_cols_json = json.loads(
         employee_df[["FirstName", "LastName"]].to_json(force_ascii=False))
     assert expected_names_cols_json == parsed_names_cols_json
+
+
+def test_merge_names():
+    employee_df = read_data(get_employee_data())
+    employee_df = merge_names(employee_df)
+    expected_test_resource = "expected_merged_names_columns_after_merging_names.json"
+    expected_merged_names_cols_json = get_test_resource_as_dict(expected_test_resource)
+    parsed_merged_names_cols_json = json.loads(
+        employee_df[["MergedNames"]].to_json(force_ascii=False))
+    assert expected_merged_names_cols_json == parsed_merged_names_cols_json

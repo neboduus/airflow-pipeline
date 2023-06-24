@@ -59,3 +59,7 @@ def clean_names(employee_df: pd.DataFrame) -> pd.DataFrame:
     employee_df['FirstName'] = employee_df['FirstName'].apply(clean_text)
     employee_df['LastName'] = employee_df['LastName'].apply(clean_text)
     return employee_df
+
+
+def merge_names(employee_df: pd.DataFrame) -> pd.DataFrame:
+    pass
