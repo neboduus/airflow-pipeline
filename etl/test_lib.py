@@ -50,8 +50,8 @@ def test_clean_text():
     texts_test_cases = [
         ("D&Bry", "DBry"),
         ("Elena'00", "Elena00"),
-        ('"J"ack "', "Jack "),
-        ('Gabriel$   Lakey "', "Gabriel   Lakey ")
+        ('"J"ack "', "Jack"),
+        ('Gabriel$   Lakey "', "Gabriel   Lakey")
     ]
     for input_text, expected_output in texts_test_cases:
         output = clean_text(input_text)
