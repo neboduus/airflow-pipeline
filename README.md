@@ -101,9 +101,12 @@ CLI mode explained in next chapter.
 - Access http://localhost:8080 and login using credentials `USERNAME=airflow` 
   and `PASSWORD=airflow`
 - Go to **Dags** section
-- Search for `etl_pipeline` DAG and run it
-- Observe results
-- Check Mongo DB results by running:
+- Search for `etl_pipeline` DAG and click on its name
+- Run `etl_pipeline` (click on play button on screen top right)
+- Wait until pipeline completes (progress vertical bar on left becomes green)
+- Access Browse > Task Instances
+- Click on the Task Id of your run and then click Logs to observe them
+- Finally, check Mongo DB results by running:
 
 ```shell
 make check-mongo-db
@@ -115,7 +118,7 @@ make check-mongo-db
 Mongo contains expected data. IT PASSED.
 ```
 
-This test controls that the data has been correctly ingested, transformed
+The last command controls if data has been correctly ingested, transformed
 and uploaded to the Mongo DB.
 
 #### Using CLI mode
