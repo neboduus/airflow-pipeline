@@ -62,7 +62,6 @@ mkdir -p ./logs ./plugins ./config
 - Create Airflow `.env` file
 
 ```shell
-mkdir -p ./logs ./plugins ./config
 echo -e "AIRFLOW_UID=$(id -u)" > .env
 ```
 
