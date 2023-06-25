@@ -42,7 +42,7 @@ deploy:
 
 .PHONY: test-dag
 test-dag:
-	docker exec -it data-engineering-pipeline-airflow-worker-1 airflow dags test etl_pipeline
+	docker exec airflow-pipeline-airflow-worker-1 airflow dags test etl_pipeline
 
 .PHONY: check-mongo-db
 check-mongo-db:
