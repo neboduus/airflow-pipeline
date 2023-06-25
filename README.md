@@ -141,10 +141,22 @@ Mongo contains expected data. IT PASSED.
 make unit-test-docker
 ```
 
+- Should result in
+
+```shell
+======================== 12 passed, 4 warnings in 0.92s ========================
+```
+
 #### Integration Testing
 
 - Requires infrastructure up and running (having previously run `make deploy`)
 
 ```shell
 make integration-testing
+```
+
+- Should result in
+
+```shell
+Mongo contains expected data. IT PASSED.
 ```
