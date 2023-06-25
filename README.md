@@ -15,8 +15,8 @@ The system is composed of several components:
    - responsible for all operations regarding reading, cleaning, transforming
      and also uploading data to Mongo DB
 
-   > in order to enable easy access of Airflow to this library, it has been placed
-   > within the `dags` folder, so that it gets easily mounted on Airflow `PYTHONPATH`
+> in order to enable easy access of Airflow to this library, it has been placed
+> within the `dags` folder, so that it gets easily mounted on Airflow `PYTHONPATH`
 
 3. Mongo DB
 
@@ -29,7 +29,8 @@ The system is composed of several components:
      - downloading data from Data Ingestor Web Service
      - process the data through the ETL pipeline
      - upload data to Mongo DB
-     
+
+![System Architecture](docs/system-architecture.jpg "System Architecture")
 
 ### Requirements
 
@@ -52,16 +53,20 @@ docker run --rm "debian:bullseye-slim" bash -c 'numfmt --to iec $(echo $(($(getc
 
 ### Pre-configuration
 
-- On Linux, you need to know your host user id and needs to have 
-group id set to `0`. Otherwise, the files created in dags, logs and plugins 
-will be created with root user ownership.
+- Create folders to be mounted by Airflow
+
+```shell
+mkdir -p ./logs ./plugins ./config
+```
+
+- Create Airflow `.env` file
 
 ```shell
 mkdir -p ./logs ./plugins ./config
 echo -e "AIRFLOW_UID=$(id -u)" > .env
 ```
 
-- Beforehand let's build all needed containers
+- Build all needed containers
 
 ```shell
 make build-containers
