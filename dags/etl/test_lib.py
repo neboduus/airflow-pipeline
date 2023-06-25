@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from etl.lib import read_data, convert_birthdate, parse_birthdate, clean_text, clean_names, merge_names, calculate_age, \
+from dags.etl.lib import read_data, convert_birthdate, parse_birthdate, clean_text, clean_names, merge_names, calculate_age, \
     calculate_salary_bucket, drop_useless_columns, etl_pipeline
 
 logger = logging.getLogger(__name__)
