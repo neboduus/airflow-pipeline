@@ -3,7 +3,7 @@
 This repo contains an example of Extract, Transform, and Load (ETL)
 pipeline built upon Airflow and Python and deployed on top of Docker.
 
-The system is composed of several components:
+The system is composed of several containerized components:
 
 1. Data Ingestor Web Service
    
@@ -11,7 +11,7 @@ The system is composed of several components:
 
 2. ETL Pipeline
 
-   - library designed to for the ETL process
+   - Python library designed to for the ETL process
    - responsible for all operations regarding reading, cleaning, transforming
      and also uploading data to Mongo DB
 
