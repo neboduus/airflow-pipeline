@@ -34,7 +34,7 @@ The system is composed of several containerized components:
 
 ### Requirements
 
-- Debian GNU/Linux 10 buster (but all OS supporting Docker should be compatible)
+- Docker compatible OS (I used Debian GNU/Linux 10 buster, but all OS supporting Docker should be compatible)
 - Docker version 24.0.2 (higher should work)
 - Docker Compose version v2.2.3 (higher should work)
 
