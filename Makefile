@@ -27,7 +27,7 @@ install-data-ingestor-requirements:
 
 .PHONY: install-etl-pipeline-requirements
 install-etl-pipeline-requirements:
-	env/bin/pip install -r etl/requirements.txt
+	env/bin/pip install -r dags/etl/requirements.txt
 
 .PHONY: init
 init: create_env install-etl-pipeline-requirements install-data-ingestor-requirements
