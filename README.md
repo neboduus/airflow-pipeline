@@ -96,7 +96,7 @@ Using the pipeline through the Airflow GUI, requires some knowledge about
 how to interact with the interface. Below, I give a list of minimal steps
 to perform the ETL pipeline and check the results. However, if playing with 
 the interface results in difficulties, please use the pipeline through the 
-CLI mode explained below.
+CLI mode explained in next chapter.
 
 - Access http://localhost:8080 and login using credentials `USERNAME=airflow` 
   and `PASSWORD=airflow`
