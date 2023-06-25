@@ -1,9 +1,11 @@
+import json
 import logging
 from datetime import datetime
 from io import StringIO
 from typing import Union
 
 import pandas as pd
+import pymongo
 from pandas._libs import NaTType
 
 logger = logging.getLogger(__name__)
@@ -103,3 +105,11 @@ def etl_pipeline(data: str) -> pd.DataFrame:
     employee_df = calculate_salary_bucket(employee_df)
     employee_df = drop_useless_columns(employee_df)
     return employee_df
+
+
+def upload_to_mongo(data: pd.DataFrame) -> None:
+    mongo_db_client = pymongo.MongoClient("mongodb://mongouser:mongouserpass@mongodb:27017/")
+    mongo_db = mongo_db_client["db"]
+    etl_pipeline_results = mongo_db["etl_pipeline_results"]
+    pipeline_result = json.loads(data.to_json(force_ascii=False))
+    etl_pipeline_results.insert_one(pipeline_result)
