@@ -36,6 +36,13 @@ init: create_env install-etl-pipeline-requirements install-data-ingestor-require
 deploy:
 	docker-compose up
 
-.PHONY: integration-test
-integration-test:
+.PHONY: test-dag
+test-dag:
 	docker exec -it data-engineering-pipeline-airflow-worker-1 airflow dags test etl_pipeline
+
+.PHONY: check-mongo-db
+check-mongo-db:
+	env/bin/python3 it/check_mongo_content.py
+
+.PHONY: integration-test
+integration-test: test-dag check-mongo-db
