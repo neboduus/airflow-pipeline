@@ -46,3 +46,7 @@ check-mongo-db:
 
 .PHONY: integration-test
 integration-test: test-dag check-mongo-db
+
+.PHONY: clean-docker
+clean-docker:
+	docker-compose down --volumes --remove-orphans
