@@ -6,16 +6,20 @@ unit-test-local:
 unit-test-docker:
 	docker run unit_test:0.0.1
 
-.PHONY: build-data-ingestor-containers
-build-data-ingestor-containers:
+.PHONY: build-data-ingestor-container
+build-data-ingestor-container:
 	cd data_ingestor && docker build -t data_ingestor:0.0.1 .
+
+.PHONY: build-it-test-container
+build-it-test-container:
+	cd it && docker build -t it_test:0.0.1 .
 
 .PHONY: build-unittest-container
 build-unittest-container:
 	docker build -f unittest.Dockerfile -t unit_test:0.0.1 .
 
 .PHONY: build-containers
-build-containers: build-unittest-container build-data-ingestor-containers
+build-containers: build-unittest-container build-data-ingestor-container build-it-test-container
 
 .PHONY: create_env
 create_env:
@@ -42,7 +46,7 @@ test-dag:
 
 .PHONY: check-mongo-db
 check-mongo-db:
-	env/bin/python3 it/check_mongo_content.py
+	docker run --network=host it_test:0.0.1
 
 .PHONY: integration-test
 integration-test: test-dag check-mongo-db
